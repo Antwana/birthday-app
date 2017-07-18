@@ -9,21 +9,45 @@ import {
 import './App.css';
 import Posts from '../Posts/Posts.js'
 import Comments from '../Comments/Comments.js'
+import Home from '../Home/Home.js'
+
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-
-          <h2>Welcome to React</h2>
+      <Router>
+        <div>
+          <nav>
+            <Link to="/home">Home</Link>
+            <Link to="/post">Post an Idea</Link>
+          </nav>
+          <main>
+            <Route
+              path="/home"
+              render={() => {
+                return(
+                  <Home />
+                )
+              }}
+            />
+              <Route
+                path="/posts"
+                render={() => {
+                  return(
+                    <Posts />
+                  )
+                }}
+              />
+          </main>
         </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+      </Router>
     );
   }
 }
+
+// axios.get('url')
+//     .then((response) => {
+//       console.log(response)
+//     })
 
 export default App;
